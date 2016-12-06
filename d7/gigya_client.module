@@ -56,3 +56,15 @@ function gigya_client_gigya_login_register_response_alter(&$commands, $ctx, $dru
     }
   }
 }
+
+/**
+ * The following example sets gigya first name as drupal user name.
+ *
+ * @param array $edit the user edit array that would be passed to drupal user_save.
+ * @param object $user the Drupal user object.
+ * @param array $gigya_account the gigya account as returned from getAccountInfo.
+ */
+function gigya_client_gigya_profile_update_alter(&$edit, $user, $gigya_account) {
+  // Use the user first name as a drupal user name
+  $edit['name'] = $gigya_account['firstName'];
+}
